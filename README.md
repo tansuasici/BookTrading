@@ -15,64 +15,35 @@ This is **not** a traditional web application. There is no central server. Inste
 - **Yellow Pages** service discovery via the Directory Facilitator
 - **Negotiation protocol**: CFP (Call for Proposal) → PROPOSE → ACCEPT_PROPOSAL → INFORM
 
-## Architecture
-
-```
-┌──────────────────────────────────────────────────────────────┐
-│                     JADE Platform (RMA)                       │
-│                                                               │
-│  ┌───────────────┐    FIPA ACL    ┌───────────────────────┐  │
-│  │ BookBuyer     │◄─────────────►│ BookSeller             │  │
-│  │ Agent         │               │ Agent                   │  │
-│  │               │   1. CFP      │                         │  │
-│  │  Target:      │─────────────►│  Catalogue:              │  │
-│  │  "Java 101"   │               │  ┌───────────┬────────┐ │  │
-│  │               │   2. PROPOSE  │  │ Book      │ Price  │ │  │
-│  │               │◄─────────────│  ├───────────┼────────┤ │  │
-│  │               │               │  │ Java 101  │  50    │ │  │
-│  │               │  3. ACCEPT    │  │ JADE Pro  │  75    │ │  │
-│  │               │─────────────►│  └───────────┴────────┘ │  │
-│  │               │               │                         │  │
-│  │               │   4. INFORM   │  ┌───────────────────┐  │  │
-│  │               │◄─────────────│  │   Seller GUI      │  │  │
-│  └───────────────┘               │  │  [Title] [Price]  │  │  │
-│                                  │  │      [Add]        │  │  │
-│         ┌──────────────────┐     │  └───────────────────┘  │  │
-│         │ Directory        │     └───────────────────────┘  │
-│         │ Facilitator      │                                 │
-│         │ (Yellow Pages)   │                                 │
-│         └──────────────────┘                                 │
-└──────────────────────────────────────────────────────────────┘
-```
-
 ## Negotiation Protocol (Step by Step)
 
 ```
-Buyer Agent                    Directory Facilitator              Seller Agent(s)
-     │                                │                                │
-     │  1. Search "book-selling"       │                                │
-     │────────────────────────────────►│                                │
-     │                                │                                │
-     │  2. Return seller list          │                                │
-     │◄────────────────────────────────│                                │
-     │                                                                  │
-     │  3. CFP: "Do you have Java 101?"                                 │
-     │─────────────────────────────────────────────────────────────────►│
-     │                                                                  │
-     │  4a. PROPOSE: "Price: 50"  (book available)                      │
-     │◄─────────────────────────────────────────────────────────────────│
-     │  4b. REFUSE: "not-available"   (book not found)                  │
-     │◄─────────────────────────────────────────────────────────────────│
-     │                                                                  │
-     │  [Select lowest price]                                           │
-     │                                                                  │
-     │  5. ACCEPT_PROPOSAL: "I'll buy Java 101"                         │
-     │─────────────────────────────────────────────────────────────────►│
-     │                                                                  │
-     │  6a. INFORM: "Purchase successful"                               │
-     │◄─────────────────────────────────────────────────────────────────│
-     │  6b. FAILURE: "Already sold to another buyer"                    │
-     │◄─────────────────────────────────────────────────────────────────│
+Buyer Agent          Directory Facilitator         Seller Agent(s)
+     |                        |                          |
+     | 1. Search              |                          |
+     |  "book-selling"        |                          |
+     |----------------------->|                          |
+     |                        |                          |
+     | 2. Return seller list  |                          |
+     |<-----------------------|                          |
+     |                                                   |
+     | 3. CFP: "Do you have Java 101?"                   |
+     |-------------------------------------------------->|
+     |                                                   |
+     | 4a. PROPOSE: "Price: 50"                          |
+     |<--------------------------------------------------|
+     | 4b. REFUSE: "not-available"                       |
+     |<--------------------------------------------------|
+     |                                                   |
+     | [Select lowest price]                             |
+     |                                                   |
+     | 5. ACCEPT_PROPOSAL: "I'll buy Java 101"           |
+     |-------------------------------------------------->|
+     |                                                   |
+     | 6a. INFORM: "Purchase successful"                 |
+     |<--------------------------------------------------|
+     | 6b. FAILURE: "Already sold"                       |
+     |<--------------------------------------------------|
 ```
 
 ## Project Structure
