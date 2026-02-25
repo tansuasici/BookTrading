@@ -5,14 +5,14 @@
 # Java
 *.class
 *.jar
-!BookTrading/dist/lib/*.jar
-!BookTrading/dist/BookTrading.jar
+!dist/lib/*.jar
+!dist/BookTrading.jar
 
 # Build output
-BookTrading/build/
+build/
 
 # NetBeans
-BookTrading/nbproject/private/
+nbproject/private/
 
 # JADE runtime
 APDescription.txt
