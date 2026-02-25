@@ -212,17 +212,17 @@ The buyer agent will discover this book within 60 seconds and automatically init
 ## Example Run
 
 ```
-Seller-agent seller1@192.168.0.100:1099/JADE is ready.
+Seller-agent seller1@localhost:1099/JADE is ready.
 Java 101 inserted into catalogue. Price = 50
 
-Hallo! Buyer-agent buyer1@192.168.0.100:1099/JADE is ready.
+Hallo! Buyer-agent buyer1@localhost:1099/JADE is ready.
 Target book is Java 101
 Trying to buy Java 101
 Found the following seller agents:
-seller1@192.168.0.100:1099/JADE
-Java 101 successfully purchased from agent seller1@192.168.0.100:1099/JADE
+seller1@localhost:1099/JADE
+Java 101 successfully purchased from agent seller1@localhost:1099/JADE
 Price = 50
-Buyer-agent buyer1@192.168.0.100:1099/JADE terminating.
+Buyer-agent buyer1@localhost:1099/JADE terminating.
 ```
 
 ## Glossary
